@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 import json
 import requests
-from pprint import pprint as write
 from apis import ApiBase
+import pprint
 
 class HhApi(ApiBase):
 
@@ -17,16 +17,18 @@ class HhApi(ApiBase):
 
     def tofile(self, reformat):
         output = []
-        for vacancie in reformat["items"]:
+        for vacancy in reformat["items"]:
             output.append({
-                "name": vacancie["name"],
-                "apply_url": vacancie["apply_alternate_url"],
+                "name": vacancy["name"],
+                "apply_url": vacancy["apply_alternate_url"],
                 "employer": {
-                    "name": vacancie["employer"]["name"],
-                    "url": vacancie["employer"]["alternate_url"]
+                    "name": vacancy["employer"]["name"],
+                    "url": vacancy["employer"]["alternate_url"]
                 },
-                "experience": vacancie["experience"]["name"],
-                "salary": f"От {vacancie['salary']['from']} до {vacancie['salary']['to']}",
+                "experience": vacancy["experience"]["name"],
+                "area": vacancy["area"]["name"],
+                "salary": {"from": vacancy["salary"]["from"],
+                           "to": vacancy["salary"]["to"]}
             })
         return output
 
@@ -37,15 +39,10 @@ class HhApi(ApiBase):
 a = HhApi
 b = a.get_page(self=a, text="Python", area=1, salary=100_000, only_with_salary=True)
 c = b.json()
-# write(c)
-# for i in range(5):
-#     print(c["items"][i]["name"])
-#     print(c["items"][i]["snippet"]["requirement"])
-#     print(c["items"][i]["snippet"]["responsibility"])
-#     print()
+d = a.tofile(self=a, reformat=c)
 
-d = a.tofile(a, c)
 a.write("vac.txt", d)
+with open("vac.txt") as file:
+    e = json.load(file)
 
-
-
+pprint.pprint(e)
