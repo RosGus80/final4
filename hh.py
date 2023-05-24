@@ -3,6 +3,7 @@ import json
 import requests
 from apis import ApiBase
 from tofile import ToFile
+from vacancies import Vacancy
 import pprint
 
 
@@ -18,21 +19,13 @@ class HhApi(ApiBase, ToFile):
         return requests.get("https://api.hh.ru/vacancies", params)
 
     def tofile(self, reformat):
-        output = []
-        i = 0
-        for vacancy in reformat["items"]:
-            i += 1
-            output.append({
-                "number": i,
-                "name": vacancy["name"],
-                "apply_url": vacancy["apply_alternate_url"],
-                "employer": vacancy["employer"]["name"],
-                "experience": vacancy["experience"]["name"],
-                "area": vacancy["area"]["name"],
-                "salary": {"from": vacancy["salary"]["from"],
-                           "to": vacancy["salary"]["to"]}
-            })
-        return output
+        vacs = [Vacancy(name=vacancy["name"], apply_url=vacancy["apply_alternate_url"],
+                        employer_name=vacancy["employer"]["name"], experience=vacancy["experience"]["name"],
+                        area=vacancy["area"]["name"], salary={"from": vacancy["salary"]["from"],
+                                                              "to": vacancy["salary"]["to"]}) for vacancy in
+                reformat["items"]]
+
+        return vacs
 
 
 
@@ -43,6 +36,4 @@ b = a.get_page(self=a, text="Экономист", area=1, salary=150_000, only_w
 c = b.json()
 d = a.tofile(self=a, reformat=c)
 
-a.write("vac.txt", d)
-with open("vac.txt") as file:
-    e = json.load(file)
+pprint.pprint(d)
