@@ -2,9 +2,11 @@ from abc import ABC, abstractmethod
 import json
 import requests
 from apis import ApiBase
+from tofile import ToFile
 import pprint
 
-class HhApi(ApiBase):
+
+class HhApi(ApiBase, ToFile):
 
     def get_page(self, text=None, area=None, salary=None, only_with_salary=False):
         if text is not None:
@@ -17,14 +19,14 @@ class HhApi(ApiBase):
 
     def tofile(self, reformat):
         output = []
+        i = 0
         for vacancy in reformat["items"]:
+            i += 1
             output.append({
+                "number": i,
                 "name": vacancy["name"],
                 "apply_url": vacancy["apply_alternate_url"],
-                "employer": {
-                    "name": vacancy["employer"]["name"],
-                    "url": vacancy["employer"]["alternate_url"]
-                },
+                "employer": vacancy["employer"]["name"],
                 "experience": vacancy["experience"]["name"],
                 "area": vacancy["area"]["name"],
                 "salary": {"from": vacancy["salary"]["from"],
@@ -37,12 +39,10 @@ class HhApi(ApiBase):
 
 
 a = HhApi
-b = a.get_page(self=a, text="Python", area=1, salary=100_000, only_with_salary=True)
+b = a.get_page(self=a, text="Экономист", area=1, salary=150_000, only_with_salary=True)
 c = b.json()
 d = a.tofile(self=a, reformat=c)
 
 a.write("vac.txt", d)
 with open("vac.txt") as file:
     e = json.load(file)
-
-pprint.pprint(e)
