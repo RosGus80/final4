@@ -12,21 +12,18 @@ class Vacancy:
         self.salary = {"from": salary["from"],
                        "to": salary["to"]}
 
-        # if not self.salary["from"].isdigit() or self.salary["to"].isdigit():
-        #     raise ValueError("Зарплата была указана не в численных значениях!")
+    def __eq__(self, other):
+        return self.salary == other.salary
 
-    # def __eq__(self, other):
-    #     return self.salary == other.salary
-    #
-    # def __gt__(self, other):
-    #     return self.salary > other.salary
-    #
-    # def __lt__(self, other):
-    #     return self.salary < other.salary
-    #
-    # def __ge__(self, other):
-    #     return self.salary >= other.salary
-    #
-    # def __le__(self, other):
-    #     return self.salary <= other.salary
-    #
+    def __gt__(self, other):
+        return self.salary > other.salary
+
+    def __lt__(self, other):
+        return self.salary < other.salary
+
+    def __ge__(self, other):
+        return self.salary >= other.salary
+
+    def __le__(self, other):
+        return self.salary <= other.salary
+

@@ -8,12 +8,14 @@ class ToFile(ABC):
 
     @abstractmethod
     def tofile(self, reformat):
-        """Метод для форматирования ответа конкретного апи одинаковым способом"""
+        """Метод для форматирования ответа конкретного апи одинаковым способом (первый шаг
+        форматирования)"""
         pass
 
     @staticmethod
     def write(path, vacs_to_write):
-        """Статический метод для записи выбранных вакансий в файл в формате json"""
+        """Статический метод для записи отформатированных json списков в файл, путь
+        до которого указывается как аргумент метода"""
         output = []
         for vac in vacs_to_write:
             output.append(vac.__dict__)
@@ -22,6 +24,9 @@ class ToFile(ABC):
 
     @staticmethod
     def leave_best_tofile(reformat):
+        """Принимает список вакансий после фильтрации топа вакансий по зарплате и пропускает
+        его через второй шаг форматирования. Возвращает готовый к записи в файл список с объектами
+        типа Vacancy"""
         vacs = [Vacancy(name=vacancy["name"], apply_url=vacancy["url"],
                         employer_name=vacancy["employer"], experience=vacancy["experience"],
                         area=vacancy["area"], salary={"from": vacancy["salary"],
@@ -42,21 +47,17 @@ class ToFile(ABC):
 
     @staticmethod
     def leave_best(path, number):
-        """Метод для удаления всех вакансий кроме лучших n по зарплате"""
+        """Метод для удаления всех вакансий кроме лучших n по зарплате. Принимает количесвто вакансий,
+        которое должно быть в топе. Читает информацию из файла, которая прошла первый шаг форматирования.
+        Возвращает список со словарями. Чтобы записать файл, список должен пройти второй шаг
+        форматирвоания"""
         with open(path) as file:
             data = json.load(file)
-            output = []
-            for vac in data:
-                if len(output) < number:
-                    output.append(vac)
-                    output = sorted(output, key=lambda d: d['salary'], reverse=True)
-                    continue
-                else:
-                    for vacancy in output:
-                        if vac["salary"] > vacancy["salary"]:
-                            del(output[number-1])
-                            output.append(vacancy)
-                            break
-                    output = sorted(output, key=lambda d: d['salary'], reverse=True)
+            data = sorted(data, key=lambda d: d['salary'], reverse=True)
+            try:
+                output = data[0:number]
+            except IndexError:
+                output = data
+
 
         return output

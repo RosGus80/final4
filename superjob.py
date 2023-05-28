@@ -10,6 +10,11 @@ class SuperJob(ApiBase, ToFile):
     apikey = "v3.r.137573938.afe9266125a1a683478c5aafefd73d1b07688451.ea51c987304742717f2042af4b80a26cbff1be2b"
 
     def get_page(self, text=None, area=None, salaryFrom=None, salayTo=None):
+        """Метод, получающий страницу вакансий с superjob с соотвтсвующими фильтрами:
+                text: Фильтр по ключевым словам
+                area: Фильтр по населенным пунктам (Принимает название населенного пункта)
+                salary: фильтр по зарплате со значениями "от" и "до" желаемых значений
+                Возвращает объект, который нужно переформатировать в JSON"""
         params = {
             "keyword": text,
             "payment_from": salaryFrom,
@@ -19,6 +24,8 @@ class SuperJob(ApiBase, ToFile):
         return requests.get("https://api.superjob.ru/2.0/vacancies/", params, headers={'X-Api-App-Id': self.apikey})
 
     def tofile(self, reformat):
+        """Первый шаг форматирования ответа. Принимает json или пайтон список из ответа superjob
+        , инициализирует объекты и возвращает отформатированный список с объектами типа Vacancy"""
         vacs = [Vacancy(name=vacancy["profession"], apply_url=vacancy["link"],
                         employer_name=vacancy["firm_name"], experience=vacancy["experience"]["title"],
                         area=vacancy["town"]["title"], salary={"from": vacancy["payment_from"],
