@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Специалист Планово-экономического отдела / Экономист",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80069463",
+    "employer": "РН-Аэро",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 182500
+  },
+  {
+    "name": "Главный экономист отдела экономического анализа и тарифов",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80838539",
+    "employer": "ФГБУ РФИ Минприроды России",
+    "experience": "Более 6 лет",
+    "area": "Москва",
+    "salary": 175000
+  },
+  {
+    "name": "Ведущий экономист планово-экономического отдела",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=78082586",
+    "employer": "Росводоканал,ООО",
+    "experience": "Более 6 лет",
+    "area": "Москва",
+    "salary": 170000
+  },
+  {
+    "name": "Главный экономист",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=81001950",
+    "employer": "МСК Истэйт",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 165000
+  },
+  {
+    "name": "Главный экономист (с функциями специалиста по договорной работе и помощника руководителя)",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80657176",
+    "employer": "АО Объединение ИНГЕОКОМ",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 160000
+  },
+  {
+    "name": "Главный экономист (с функциями специалиста по договорной работе и помощника руководителя)",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80657176",
+    "employer": "АО Объединение ИНГЕОКОМ",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 160000
+  },
+  {
+    "name": "Экономист",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80790130",
+    "employer": "НСК «Экосфера»",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 150000
+  },
+  {
+    "name": "Ведущий экономист по финансовой работе",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80923538",
+    "employer": "Бурсервис, АО, НПП",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 150000
+  },
+  {
+    "name": "Ведущий экономист отдела бюджетирования",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80807217",
+    "employer": "Комплексные транспортно-логистические решения",
+    "experience": "От 3 до 6 лет",
+    "area": "Москва",
+    "salary": 150000
+  },
+  {
+    "name": "Экономист",
+    "url": "https://hh.ru/applicant/vacancy_response?vacancyId=80139885",
+    "employer": "Регионстрой",
+    "experience": "От 1 года до 3 лет",
+    "area": "Москва",
+    "salary": 150000
+  }
+]

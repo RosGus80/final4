@@ -25,15 +25,25 @@ class HhApi(ApiBase, ToFile):
                                                               "to": vacancy["salary"]["to"]}) for vacancy in
                 reformat["items"]]
 
+        for vac in vacs:
+            if vac.salary["from"] is not None and vac.salary["to"] is not None:
+                vac.salary = round((vac.salary["from"] + vac.salary["to"])/2)
+            elif vac.salary["from"] is not None:
+                vac.salary = vac.salary["from"]
+            elif vac.salary["to"] is not None:
+                vac.salary = vac.salary["to"]
+            else:
+                vac.salary = 0
+
         return vacs
 
 
-
-
-
 a = HhApi
-b = a.get_page(self=a, text="Экономист", area=1, salary=150_000, only_with_salary=True)
-c = b.json()
-d = a.tofile(self=a, reformat=c)
-
-pprint.pprint(d)
+# b = a.get_page(self=a, text="Экономист", area=1, salary=150_000, only_with_salary=True)
+# c = b.json()
+# d = a.tofile(self=a, reformat=c)
+#
+# a.write("vac.txt", d)
+e = a.leave_best("vac.txt", 10)
+f = a.leave_best_tofile(e)
+a.write("vac.txt", f)
