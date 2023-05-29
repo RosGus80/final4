@@ -43,12 +43,12 @@ class HhApi(ApiBase, ToFile):
         return vacs
 
 
-a = HhApi
-# b = a.get_page(self=a, text="Экономист", area=1, salary=150_000)
-# c = b.json()
-# d = a.tofile(self=a, reformat=c)
-#
-# a.write("vac.txt", d)
-e = a.leave_best("vac.txt", 10)
-f = a.leave_best_tofile(e)
-a.write("vac.txt", f)
+# a = HhApi
+# # b = a.get_page(self=a, text="Экономист", area=1, salary=150_000)
+# # c = b.json()
+# # d = a.tofile(self=a, reformat=c)
+# #
+# # a.write("vac.txt", d)
+# e = a.leave_best("vac.txt", 10)
+# f = a.leave_best_tofile(e)
+# a.write("vac.txt", f)

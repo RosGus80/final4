@@ -45,8 +45,8 @@ class SuperJob(ApiBase, ToFile):
         return vacs
 
 
-a = SuperJob
-b = a.get_page(self=a, text="Python", area="Москва")
-c = b.json()
-d = a.tofile(a, c)
-a.write("vac.txt", d)
+# a = SuperJob
+# b = a.get_page(self=a, text="Python", area="Москва")
+# c = b.json()
+# d = a.tofile(a, c)
+# a.write("vac.txt", d)
